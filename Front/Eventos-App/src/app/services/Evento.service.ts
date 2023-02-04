@@ -6,7 +6,7 @@ import { Evento } from '../models/Evento';
 @Injectable()
 export class EventoService
 {
-  baseURL: string = "https://localhost:5001/api/eventos";
+  baseURL: string = 'https://localhost:5001/api/eventos';
 
   constructor(private http: HttpClient) { }
 
@@ -15,10 +15,10 @@ export class EventoService
   }
 
   public getEventosByTema(tema: string): Observable<Evento []>{
-    return this.http.get<Evento[]>('%{this.baseURL}/${tema}');
+    return this.http.get<Evento[]>('%{this.baseURL}/${tema}/tema');
   }
 
-  public getEventoById(): Observable<Evento[]> {
-    return this.http.get<Evento[]>('${this.baseURL}/${id}');
+  public getEventoById(id: number): Observable<Evento> {
+    return this.http.get<Evento>('${this.baseURL}/${id}');
   }
 }

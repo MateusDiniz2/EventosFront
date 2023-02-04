@@ -12,9 +12,9 @@ export class EventosComponent implements OnInit {
 
   public eventosFiltrados : Evento[] = [];
   public eventos:  Evento[] = [];
-  margemImagem: number = 2;
-  larguraImagem: number = 150;
-  exibirImagem: boolean = true;
+  public margemImagem: number = 2;
+  public larguraImagem: number = 150;
+  public exibirImagem: boolean = true;
   private _filtroLista: string = '';
 
   public get filtroLista(): string{
