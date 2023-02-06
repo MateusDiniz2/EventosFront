@@ -1,5 +1,7 @@
 // import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { ToastrService } from 'ngx-toastr';
 import { Evento } from '../models/Evento';
 import { EventoService } from '../services/Evento.service';
 
@@ -10,6 +12,7 @@ import { EventoService } from '../services/Evento.service';
 })
 export class EventosComponent implements OnInit {
 
+  modalRef?: BsModalRef;
   public eventosFiltrados : Evento[] = [];
   public eventos:  Evento[] = [];
   public margemImagem: number = 2;
@@ -33,7 +36,7 @@ export class EventosComponent implements OnInit {
     )
   }
 
-  constructor(private eventoService: EventoService) { }
+  constructor(private eventoService: EventoService,  private modalService: BsModalService, private toastrService: ToastrService) { }
 
   public ngOnInit() {
     this.getEventos();
@@ -51,5 +54,19 @@ export class EventosComponent implements OnInit {
 
   public alterarImagem(): void {
     this.exibirImagem = !this.exibirImagem;
+  }
+
+  public openModal(template: TemplateRef<any>) : void {
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  confirm(): void {
+    this.modalRef?.hide();
+    this.toastrService.success('O Evento foi editado com sucesso.', 'Editado');
+  }
+
+  decline(): void {
+    this.modalRef?.hide();
+    this.toastrService.success('O Evento foi deletado com sucesso.', 'Deletado');
   }
 }
