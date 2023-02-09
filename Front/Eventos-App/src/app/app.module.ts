@@ -7,7 +7,7 @@ import { DateTimeFormatPipePipe } from './helpers/DateTimeFormatPipe.pipe';
 import { EventoService } from './services/Evento.service';
 
 
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { FormsModule } from '@angular/forms';
 import {ToastrModule} from 'ngx-toastr';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
@@ -43,9 +44,11 @@ import {ToastrModule} from 'ngx-toastr';
         positionClass: 'toast-bottom-right',
         preventDuplicates: true,
         progressBar: true
-      })
+      }),
+    NgxSpinnerModule
   ],
   providers: [EventoService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
